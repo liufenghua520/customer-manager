@@ -73,4 +73,9 @@ public class CustomerController {
         return "findpass";
     }
 
+    @RequestMapping("fingPass")
+    public String fingPass(){
+
+        return "";
+    }
 }
