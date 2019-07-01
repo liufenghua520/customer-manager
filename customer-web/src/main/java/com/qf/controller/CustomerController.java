@@ -73,6 +73,11 @@ public class CustomerController {
         return "findpass";
     }
 
+    @RequestMapping("fingPass")
+    public String fingPass(){
+
+        return "";
+    }
     @RequestMapping("update")
     public String update(Customer customer){
 
