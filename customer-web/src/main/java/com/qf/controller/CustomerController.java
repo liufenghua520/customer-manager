@@ -73,4 +73,9 @@ public class CustomerController {
         return "findpass";
     }
 
+    @RequestMapping("update")
+    public String update(Customer customer){
+
+        return "";
+    }
 }
