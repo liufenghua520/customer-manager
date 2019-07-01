@@ -1,0 +1,18 @@
+server:
+  port: 8989
+
+spring:
+  mail:
+    protocol: smtp
+    host: smtp.sina.com
+    username: hellojerk@sina.com
+    password: lfh163914
+
+
+dubbo:
+  registry:
+    address: zookeeper://192.168.118.168:2181
+  application:
+    name: email-serviceimpl
+  protocol:
+    port: -1
