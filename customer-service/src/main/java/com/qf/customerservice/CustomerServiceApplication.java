@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = "com.qf")
 @MapperScan("com.qf.dao")
-@DubboComponentScan("com.qf.serviceimpl")
+@DubboComponentScan("com.qf.emailservice")
 public class CustomerServiceApplication {
 
     public static void main(String[] args) {

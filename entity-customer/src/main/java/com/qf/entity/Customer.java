@@ -22,6 +22,6 @@ public class Customer implements Serializable {
     private String email ;
 
     @TableField(exist = false)
-    private int code ;
+    private String code ;
 
 }

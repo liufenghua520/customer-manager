@@ -3,6 +3,7 @@ package com.qf.serviceimpl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.qf.dao.CustomerMapper;
 import com.qf.entity.Customer;
+import com.qf.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;

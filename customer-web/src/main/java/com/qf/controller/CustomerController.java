@@ -2,15 +2,13 @@ package com.qf.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.qf.entity.Customer;
-import com.qf.serviceimpl.CustomerService;
-import com.qf.serviceimpl.EmailService;
+import com.qf.service.CustomerService;
+import com.qf.service.EmailService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Random;
 
 @Controller
 @RequestMapping("/cus")
@@ -29,9 +27,11 @@ public class CustomerController {
     @RequestMapping("/sendCode")
     @ResponseBody
     public Object sendCode(@RequestParam String email, HttpSession session){
-        System.out.println("email: "+email);
-        int code = (int) (Math.random()*9000+1000);
-        System.out.println("code: "+code);
+        System.out.println("用户邮箱: "+email);
+        //int code = (int) (Math.random()*9000+1000);
+        Random random = new Random();
+        String code = (random.nextInt(9000)+1000)+"";
+        System.out.println("生成的验证码: "+code);
         session.setAttribute("code",code);
         emailService.sendCode(email,code);
         return true;
@@ -39,11 +39,11 @@ public class CustomerController {
 
     @RequestMapping("/register")
     @ResponseBody
-    public Object register(@RequestBody Customer customer, HttpSession session){
+    public Object register(@RequestBody Customer customer,HttpSession session){
         System.out.println(customer);
-        int code = (int) session.getAttribute("code");
-        System.out.println("code: "+code);
-        if (code==customer.getCode()){
+        String code = (String) session.getAttribute("code");
+        System.out.println("session中的验证码:  "+code);
+        if (customer.getCode().equals(code)){
             customerService.register(customer);
             return true ;
         }

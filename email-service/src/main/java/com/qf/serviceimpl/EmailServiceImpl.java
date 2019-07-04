@@ -1,6 +1,7 @@
 package com.qf.serviceimpl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.qf.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -15,7 +16,7 @@ public class EmailServiceImpl implements EmailService {
     private JavaMailSender mailSender;
 
     @Override
-    public void sendCode(String email,int code)  {
+    public void sendCode(String email, String code)  {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper messageHelper = null;
         try {

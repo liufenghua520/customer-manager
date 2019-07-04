@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <base th:href="${#request.getContextPath()+'/'}">
     <base href="">
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,26 +9,28 @@
 <body>
     <h1 align="center">XXXX平台注册中心</h1>
 
-    <table border="1" align="center">
-        <tr>
-            <td>用户名：<input type="text" id="username"></td>
-        </tr>
-        <tr>
-            <td>密  码：<input type="text" id="password"></td>
-        </tr>
-        <tr>
-            <td>昵  称：<input type="text" id="nickname"></td>
-        </tr>
-        <tr>
-            <td>邮  箱：<input type="text" id="email"><button id="btn" onclick="send()">获取验证码</button></td>
-        </tr>
-        <tr>
-            <td>验证码：<input type="text" id="code"></td>
-        </tr>
-        <tr>
-            <td align="center"><input type="submit" onclick="register()" value="注册" ></td>
-        </tr>
-    </table>
+        <table border="1" align="center">
+            <tr>
+                <td>用户名：<input type="text" id="username"></td>
+            </tr>
+            <tr>
+                <td>密  码：<input type="text" id="password"></td>
+            </tr>
+            <tr>
+                <td>昵  称：<input type="text" id="nickname"></td>
+            </tr>
+            <tr>
+                <td>邮  箱：<input type="text" id="email"><button id="btn" onclick="send()" type="button">获取验证码</button></td>
+            </tr>
+            <tr>
+                <td>验证码：<input type="text" id="code"></td>
+            </tr>
+            <tr>
+                <td align="center"><input type="submit" onclick="register()" value="注册" ></td>
+            </tr>
+        </table>
+
+
 
     <script src="/jquery/jquery-1.8.2.js"></script>
     <script>
@@ -39,10 +42,12 @@
                 contentType: "application/json; charset=utf-8",
                 dataType:'json',
                 success:function(data) {
-                    $("#btn").innerText("验证码已发送")
+                    if (data){
+                        $("#btn").html("验证码已发送");
+                    }
                 },
                 error : function() {
-                    console.error(data);
+                    $("#btn").html("验证码已发送");
                 }
             })
         }
@@ -64,8 +69,8 @@
                 dataType:'json',
                 success:function(data) {
                     if(data){
-                        // alert("注册完成！")
-                        window.location.href = "../";
+                        alert("注册完成！")
+                        window.location.href = "/cus/toLogin";
                     }else {
                         alert("验证码有误！")
                     }
